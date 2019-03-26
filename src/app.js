@@ -2,7 +2,7 @@
 import {Controls} from './controls';
 import './app.less'
 
-class NicePopup {
+export class NicePopup {
    constructor(cfg) {
       this.light_gallery = document.querySelectorAll('.light_gallery');
       this.wrapper = null;
@@ -165,8 +165,6 @@ class NicePopup {
    }
 }
 
-if (document) {
-   document.__proto__.LightGallery = LightGallery;
-}
-
-export {NicePopup}
+// if (document) {
+//    document.__proto__.NicePopup = NicePopup;
+// }
