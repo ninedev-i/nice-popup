@@ -2,37 +2,48 @@
 
 export class Controls {
    constructor(cfg) {
+      this.popup = cfg.popup;
       this.gallery = cfg.gallery;
-      this.showArrows = cfg.showArrows;
+      this.moreThanOneImage = cfg.gallery.light_gallery.length > 1;
 
-      this.keyBoardListener();
+      this.options = {};
+      this.options.showArrows = cfg.options.showArrows === undefined ? true : cfg.options.showArrows;
+      this.options.keyboard = cfg.options.keyboard === undefined ? true : cfg.options.keyboard;
+      this.options.mouseAdditionalButtons = cfg.options.mouseAdditionalButtons === undefined ? true : cfg.options.mouseAdditionalButtons;
+
+      if (this.options.mouseAdditionalButtons) {
+         this.addMouseListener();
+      }
+      if (this.options.keyboard) {
+         this.keyBoardListener();
+      }
    }
 
    /**
     * Отобразим стрелки переключения слайдов
     */
    addArrows() {
-      if (!this.showArrows) {
+      if (!this.options.showArrows || !this.moreThanOneImage) {
          return;
       }
-      let wrapper = document.querySelector('.light-image-container');
+      let wrapper = document.querySelector('.nice-image-container');
 
       let arrows = document.createElement('div');
-      arrows.className = 'light-image-arrows';
-      arrows.innerHTML = `<div class="light-image-arrows-left">left</div><div class="light-image-arrows-right">right</div>`;
+      arrows.className = 'nice-image-arrows';
+      arrows.innerHTML = `<div class="nice-image-arrows-left">left</div><div class="nice-image-arrows-right">right</div>`;
       wrapper.appendChild(arrows);
 
       // Закроем по нажатии на подложку стрелок
       arrows.addEventListener('click', (ev) => {
          switch (ev.target.className) {
-            case 'light-image-arrows-left':
+            case 'nice-image-arrows-left':
                this.gallery.previousImage();
                break;
-            case 'light-image-arrows-right':
+            case 'nice-image-arrows-right':
                this.gallery.nextImage();
                break;
             default:
-               this.gallery.close();
+               this.popup.close();
          }
       });
    }
@@ -46,15 +57,43 @@ export class Controls {
 
          switch (key) {
             case 37:
-               this.gallery.previousImage();
+               if (this.moreThanOneImage) {
+                  this.gallery.previousImage();
+               }
                break;
             case 39:
-               this.gallery.nextImage();
+               if (this.moreThanOneImage) {
+                  this.gallery.nextImage();
+               }
                break;
             case 27:
-               this.gallery.close();
+               this.popup.close();
                break;
          }
-      }
+      };
+   }
+
+   /**
+    * Переключим слайды по нажатию на кнопки мыши
+    */
+   addMouseListener() {
+      document.querySelector('.nice-wrapper').addEventListener('mouseup', (ev) => {
+         ev.preventDefault(false);
+         let key = ev.keyCode ? ev.keyCode : ev.which;
+         switch (key) {
+            case 4:
+               if (this.moreThanOneImage) {
+                  this.gallery.previousImage();
+               } else {
+                  this.popup.close();
+               }
+               break;
+            case 5:
+               if (this.moreThanOneImage) {
+                  this.gallery.nextImage();
+               }
+               break;
+         }
+      });
    }
 }
