@@ -1,9 +1,14 @@
 {
   "name": "nice-popup",
-  "version": "0.1.1",
+  "version": "0.2.1",
   "description": "Nice popup",
   "author": "Victor Vedenin",
   "license": "MIT",
+  "keywords": [
+    "popup",
+    "lightbox",
+    "gallery"
+  ],
   "main": "./dist/app.js",
   "repository": {
     "type": "git",

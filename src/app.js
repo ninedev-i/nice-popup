@@ -1,9 +1,15 @@
 'use strict';
 import {Gallery} from './gallery';
+import {Inline} from './inline';
 import './app.less'
 
 export class NicePopup {
    constructor(cfg) {
+      // для ssr если нет window, то не обрабатываем
+      if (!window) {
+         return;
+      }
+
       this.cfg = cfg;
       this.wrapper = null;
 
@@ -14,19 +20,31 @@ export class NicePopup {
     * Открытие элемента
     */
    openPopup(ev) {
-      let link = ev.target.parentElement;
+      let target = ev.target;
+      let link = target && target.hasAttribute('data-nice') && target.getAttribute('data-nice');
+      if (!link) {
+         target = ev.target.parentElement;
+         link = target && target.hasAttribute('data-nice') && target.getAttribute('data-nice');
+      }
+      let config = {
+         popup: this,
+         link: target,
+         options: this.cfg
+      };
 
-      if (!link || !link.hasAttribute('data-nice')) {
-         return;
+      switch(link) {
+         case 'gallery':
+            this.addWrapper();
+            new Gallery(config);
+            break;
+         case 'inline':
+            this.addWrapper();
+            new Inline(config);
+            break;
+         default:
+            return;
       }
       ev.preventDefault();
-
-      this.addWrapper();
-      this.gallery = new Gallery({
-         popup: this,
-         link: link,
-         options: this.cfg
-      });
    }
 
    /**
@@ -52,11 +70,8 @@ export class NicePopup {
 }
 
 /**
- * для ssr если нет window, то не обрабатываем
  * для импорта через html запишем в глобальную переменную window
  */
-if (window) {
-   window.NicePopup = NicePopup;
-} else {
-   return;
-}
+// if (window) {
+//    window.NicePopup = NicePopup;
+// }

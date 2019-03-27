@@ -4,14 +4,11 @@ import {Controls} from './controls';
 export class Gallery {
    constructor(cfg) {
       this.light_gallery = document.querySelectorAll('.nice_gallery');
-      this.wrapper= document.querySelector('.nice-wrapper');
+      this.wrapper = document.querySelector('.nice-wrapper');
       this.imageUrl = cfg.link.getAttribute('href');
       this.popup = cfg.popup;
       this.imageWrapper = null;
       this.openedImageNumber = null;
-
-      // конфиг
-      this.showArrows = true;
 
       this.controls = new Controls({
          gallery: this,

@@ -4,7 +4,7 @@ export class Controls {
    constructor(cfg) {
       this.popup = cfg.popup;
       this.gallery = cfg.gallery;
-      this.moreThanOneImage = cfg.gallery.light_gallery.length > 1;
+      this.moreThanOneImage = cfg.gallery ? cfg.gallery.light_gallery.length > 1 : false;
 
       this.options = {};
       this.options.showArrows = cfg.options.showArrows === undefined ? true : cfg.options.showArrows;
