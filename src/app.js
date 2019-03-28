@@ -69,9 +69,9 @@ export class NicePopup {
    }
 }
 
-new NicePopup({
-   showArrows: true,
-   mouseAdditionalButtons: true,
-   keyboard: true
-});
+// new NicePopup({
+//    showArrows: true,
+//    mouseAdditionalButtons: true,
+//    keyboard: true
+// });
 
