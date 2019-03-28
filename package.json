@@ -1,6 +1,6 @@
 {
   "name": "nice-popup",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Nice popup",
   "author": "Victor Vedenin",
   "license": "MIT",
@@ -15,7 +15,14 @@
     "url": "git+https://github.com/FallenMaster/nice-popup.git"
   },
   "devDependencies": {
+    "@babel/core": "^7.4.0",
+    "@babel/preset-env": "^7.4.2",
+    "babel-preset-minify": "^0.5.0",
+    "babelify": "^10.0.0",
+    "browser-sync": "^2.26.3",
+    "browserify": "^16.2.3",
+    "gulp": "^4.0.0",
     "less": "^3.9.0",
-    "parcel-bundler": "^1.12.3"
+    "vinyl-source-stream": "^2.0.0"
   }
 }

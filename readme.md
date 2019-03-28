@@ -4,11 +4,8 @@ Customizable script for displaying images or inline content.
 
 **N.B. This is a beta version!**
 ## Install
-
-``` bash
-npm install nice-popup
-```
-
+1. Install package by command ```npm install nice-popup```
+2. Add styles to your css from [here](https://github.com/FallenMaster/nice-popup/blob/master/dist/app.css).
 
 ## Usage
 1. Html – gallery

@@ -1,7 +1,7 @@
 'use strict';
 import {Gallery} from './gallery';
 import {Inline} from './inline';
-import './app.less'
+// import './app.less'
 
 export class NicePopup {
    constructor(cfg) {
@@ -69,9 +69,9 @@ export class NicePopup {
    }
 }
 
-/**
- * для импорта через html запишем в глобальную переменную window
- */
-// if (window) {
-//    window.NicePopup = NicePopup;
-// }
+new NicePopup({
+   showArrows: true,
+   mouseAdditionalButtons: true,
+   keyboard: true
+});
+
