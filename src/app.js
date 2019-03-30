@@ -8,6 +8,7 @@ export class NicePopup {
       if (!window) {
          return;
       }
+      this.overlayColor = cfg.overlayColor === undefined ? '#0f0f11' : cfg.overlayColor;
 
       this.cfg = cfg || {};
       this.wrapper = null;
@@ -52,12 +53,9 @@ export class NicePopup {
    addWrapper() {
       this.wrapper = document.createElement('div');
       this.wrapper.className = 'nice-wrapper';
-
-      let background = document.createElement('div');
-      background.className = 'nice-wrapper-background';
+      this.wrapper.innerHTML = `<div class="nice-wrapper-background" style="background-color: ${this.overlayColor};"></div>`;
 
       document.body.appendChild(this.wrapper);
-      this.wrapper.appendChild(background);
    }
 
    /**

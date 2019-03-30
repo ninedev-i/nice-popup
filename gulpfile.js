@@ -1,20 +1,23 @@
-const {watch, parallel, dest} = require('gulp');
+const {watch, parallel, src, dest} = require('gulp');
 const browserSync = require('browser-sync');
 const browserify = require('browserify');
 const babelify = require('babelify');
 const source = require('vinyl-source-stream');
+const less = require('gulp-less');
 // const sourcemaps = require('gulp-sourcemaps');
 
 const config = {
    entry: {
       dir: './src/',
       js: 'app.js',
-      html: 'index.html'
+      html: 'index.html',
+      styles: '*.less'
    },
    output: {
       dir: './dist/',
       html: './dist/index.html',
-      js: 'app.js'
+      js: 'app.js',
+      styles: 'app.css'
    }
 };
 
@@ -34,7 +37,7 @@ const reload = (file) => {
 };
 
 const watchFiles = () => {
-   // watch([config.entry.html], html);
+   watch([config.entry.dir + '*.less'], styles);
    watch([config.entry.dir + '*.js'], javascript);
 };
 
@@ -52,6 +55,15 @@ const javascript = (done) => {
       .pipe(dest(config.output.dir));
 
    reload(config.entry.js);
+   done();
+};
+
+const styles = (done) => {
+   src(config.entry.dir + '*.less')
+      .pipe(less())
+      .pipe(browserSync.reload({stream: true}))
+      .pipe(dest(config.output.dir));
+
    done();
 };
 

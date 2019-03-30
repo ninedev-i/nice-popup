@@ -8,6 +8,7 @@ export class Controls {
 
       this.options = {};
       this.options.showArrows = cfg.options.showArrows === undefined ? true : cfg.options.showArrows;
+      this.options.arrowsPosition = cfg.options.arrowsPosition === undefined ? 'top' : cfg.options.arrowsPosition;
       this.options.keyboard = cfg.options.keyboard === undefined ? true : cfg.options.keyboard;
       this.options.mouseAdditionalButtons = cfg.options.mouseAdditionalButtons === undefined ? true : cfg.options.mouseAdditionalButtons;
 
@@ -29,8 +30,8 @@ export class Controls {
       let wrapper = document.querySelector('.nice-image-container');
 
       let arrows = document.createElement('div');
-      arrows.className = 'nice-image-arrows';
-      arrows.innerHTML = `<div class="nice-image-arrows-left">left</div><div class="nice-image-arrows-right">right</div>`;
+      arrows.className = `nice-image-arrows nice-image-arrows-${this.options.arrowsPosition}`;
+      arrows.innerHTML = `<div class="nice-image-arrows-left"></div><div class="nice-image-arrows-right"></div>`;
       wrapper.appendChild(arrows);
 
       // Закроем по нажатии на подложку стрелок

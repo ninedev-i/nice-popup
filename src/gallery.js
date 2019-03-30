@@ -65,23 +65,32 @@ export class Gallery {
     */
    removeImage(toRight) {
       this.imageWrapper.className += ' oldWrapper';
-      let oldWrapper = document.querySelector('.oldWrapper');
       switch(toRight) {
          case true:
             document.querySelector('.nice-image').className = 'nice-image nice-animation-left-fadeOut';
             setTimeout(() => {
-               oldWrapper.remove();
+               this.deleteOldImages();
             }, 300);
             break;
          case false:
             document.querySelector('.nice-image').className = 'nice-image nice-animation-right-fadeOut';
             setTimeout(() => {
-               oldWrapper.remove();
+               this.deleteOldImages();
             }, 300);
             break;
          default:
-            oldWrapper.remove();
+            this.deleteOldImages();
       }
+   }
+
+   /**
+    * Хак для удаления картинки – пользователь может очень быстро листать, в результате чего будут плодиться oldWrappers
+    */
+   deleteOldImages() {
+      let oldWrappers = document.querySelectorAll('.oldWrapper');
+      oldWrappers.forEach((item) => {
+         item.remove();
+      });
    }
 
    /**

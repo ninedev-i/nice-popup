@@ -1,122 +1,177 @@
 .nice-wrapper {
-   width: 100%;
-   height: 100%;
-   display: block;
-   position: absolute;
-   top: 0;
-   left: 0;
-   overflow: hidden;
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
 }
 .nice-wrapper-background {
-   background-color: #0f0f11;
-   opacity: 0.8;
-   width: 100%;
-   height: 100%;
-   position: absolute;
-   z-index: 1000;
+  opacity: 0.8;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 1000;
 }
 .nice-image {
-   height: 100%;
+  height: 100%;
+  user-select: none;
 }
 .nice-image-container {
-   position: absolute;
-   flex-direction: column;
-   justify-content: center;
-   width: 100%;
-   height: 100%;
-   z-index: 2000;
+  position: absolute;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  z-index: 2000;
 }
 .nice-image-wrapper {
-   text-align: center;
-   height: 100%;
+  text-align: center;
+  height: 100%;
 }
 .nice-image-arrows {
-   color: white;
-   z-index: 2000;
-   display: flex;
-   flex-direction: row;
-   justify-content: center;
-   width: 100%;
+  color: white;
+  z-index: 2000;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+.nice-image-arrows-top {
+  justify-content: center;
+}
+.nice-image-arrows-top .nice-image-arrows-left,
+.nice-image-arrows-top .nice-image-arrows-right {
+  height: 36px;
+  width: 46px;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.nice-image-arrows-top .nice-image-arrows-left:hover,
+.nice-image-arrows-top .nice-image-arrows-right:hover {
+  background-color: rgba(250, 250, 250, 0.6);
+  color: black;
+}
+.nice-image-arrows-side {
+  justify-content: space-between;
+}
+.nice-image-arrows-side .nice-image-arrows-left {
+  height: 100vh;
+  position: absolute;
+  width: 100px;
+  left: 0;
+  z-index: 30;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%);
+}
+.nice-image-arrows-side .nice-image-arrows-left:hover {
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%);
+  color: white;
+}
+.nice-image-arrows-side .nice-image-arrows-right {
+  height: 100vh;
+  position: absolute;
+  width: 100px;
+  right: 0;
+  z-index: 30;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
+}
+.nice-image-arrows-side .nice-image-arrows-right:hover {
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);
+  color: white;
 }
 .nice-image-arrows-left,
 .nice-image-arrows-right {
-   user-select: none;
-   margin: 0 10px;
-   display: flex;
-   flex-direction: column;
-   height: 36px;
-   width: 46px;
-   justify-content: center;
-   text-align: center;
+  user-select: none;
+  padding: 0 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.nice-image-arrows-left::before {
+  height: 7px;
+  width: 7px;
+  border-left: 2px solid;
+  border-top: 2px solid;
+  content: '';
+  transform: rotate(-45deg);
+  margin: 0 4px;
+}
+.nice-image-arrows-right::after {
+  height: 7px;
+  width: 7px;
+  border-right: 2px solid;
+  border-top: 2px solid;
+  content: '';
+  transform: rotate(45deg);
+  margin: 0 4px;
 }
 .nice-image-arrows-left:hover,
 .nice-image-arrows-right:hover {
-   background-color: rgba(250, 250, 250, 0.6);
-   cursor: pointer;
-   color: #000000;
+  cursor: pointer;
 }
 .nice-box {
-   padding: 12px;
-   background-color: white;
+  padding: 12px;
+  background-color: white;
 }
 .nice-box-container {
-   position: absolute;
-   width: 100%;
-   height: 100%;
-   z-index: 2000;
-   display: flex;
-   align-items: center;
-   justify-content: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .nice-animation-right-fadeIn {
-   animation: 0.4s ease-out 0s 1 fade-In-FromRight;
+  animation: 0.4s ease-out 0s 1 fade-In-FromRight;
 }
 .nice-animation-right-fadeOut {
-   animation: 0.4s ease-out 0s 1 fade-Out-ToRight;
+  animation: 0.4s ease-out 0s 1 fade-Out-ToRight;
 }
 .nice-animation-left-fadeIn {
-   animation: 0.4s ease-out 0s 1 fade-In-FromLeft;
+  animation: 0.4s ease-out 0s 1 fade-In-FromLeft;
 }
 .nice-animation-left-fadeOut {
-   animation: 0.4s ease-out 0s 1 fade-Out-ToLeft;
+  animation: 0.4s ease-out 0s 1 fade-Out-ToLeft;
 }
 @keyframes fade-In-FromLeft {
-   0% {
-      transform: translateX(-1000%);
-      opacity: 0;
-   }
-   100% {
-      transform: translateX(0);
-      opacity: 1;
-   }
+  0% {
+    transform: translateX(-1000%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 @keyframes fade-In-FromRight {
-   0% {
-      transform: translateX(1000%);
-      opacity: 0;
-   }
-   100% {
-      transform: translateX(0);
-      opacity: 1;
-   }
+  0% {
+    transform: translateX(1000%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 @keyframes fade-Out-ToRight {
-   0% {
-      transform: translateX(0);
-      opacity: 1;
-   }
-   100% {
-      transform: translateX(100%);
-      opacity: 0;
-   }
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
 }
 @keyframes fade-Out-ToLeft {
-   0% {
-      transform: translateX(0);
-      opacity: 1;
-   }
-   100% {
-      transform: translateX(-100%);
-      opacity: 0;
-   }
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
 }

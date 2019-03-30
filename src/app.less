@@ -9,7 +9,6 @@
       overflow: hidden;
       
       &-background {
-         background-color: #0f0f11;
          opacity: 0.8;
          width: 100%;
          height: 100%;
@@ -18,8 +17,10 @@
       }
    }
    
+   // для мобильноый версии убрать заменить height на width
    &-image {
       height: 100%;
+      user-select: none;
       
       &-container {
          position: absolute;
@@ -45,23 +46,88 @@
          flex-direction: row;
          justify-content: center;
          width: 100%;
+   
+         // Отображение стрелок сверху
+         &-top {
+            justify-content: center;
+            .nice-image-arrows {
+               &-left,
+               &-right {
+                  height: 36px;
+                  width: 46px;
+                  background-color: rgba(0, 0, 0, 0.1);
+                  &:hover {
+                     background-color: rgba(250, 250, 250, 0.6);
+                     color: black
+                  }
+               }
+            }
+         }
+         // Отображение стрелок сбоку
+         &-side {
+            justify-content: space-between;
+            .nice-image-arrows {
+               &-left {
+                  height: 100vh;
+                  position: absolute;
+                  width: 100px;
+                  left: 0;
+                  z-index: 30;
+                  background: linear-gradient(90deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%);
+                  &:hover {
+                     background: linear-gradient(90deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%);
+                     color: white;
+                  }
+               }
+      
+               &-right {
+                  height: 100vh;
+                  position: absolute;
+                  width: 100px;
+                  right: 0;
+                  z-index: 30;
+                  background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
+                  &:hover {
+                     background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);
+                     color: white;
+                  }
+               }
+            }
+         }
          
          &-left,
          &-right {
             user-select: none;
-            margin: 0 10px;
+            padding: 0 10px;
             display: flex;
-            flex-direction: column;
-            height: 36px;
-            width: 46px;
+            flex-direction: row;
             justify-content: center;
-            text-align: center;
+            align-items: center;
          }
+   
+         &-left::before {
+            height: 7px;
+            width: 7px;
+            border-left: 2px solid;
+            border-top: 2px solid;
+            content: '';
+            transform: rotate(-45deg);
+            margin: 0 4px;
+         }
+   
+         &-right::after {
+            height: 7px;
+            width: 7px;
+            border-right: 2px solid;
+            border-top: 2px solid;
+            content: '';
+            transform: rotate(45deg);
+            margin: 0 4px;
+         }
+         
          &-left:hover,
          &-right:hover {
-            background-color: rgba(250, 250, 250, 0.6);
             cursor: pointer;
-            color: black
          }
       }
    }
