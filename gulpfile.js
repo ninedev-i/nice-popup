@@ -39,7 +39,7 @@ const watchFiles = () => {
 };
 
 const javascript = (done) => {
-   browserify({ debug: true })
+   browserify({debug: false, standalone: 'NicePopup'})
       .transform(babelify.configure({
          presets: ['@babel/preset-env', 'minify'],
          comments: false

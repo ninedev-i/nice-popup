@@ -1,7 +1,6 @@
 'use strict';
 import {Gallery} from './gallery';
 import {Inline} from './inline';
-// import './app.less'
 
 export class NicePopup {
    constructor(cfg) {
@@ -10,7 +9,7 @@ export class NicePopup {
          return;
       }
 
-      this.cfg = cfg;
+      this.cfg = cfg || {};
       this.wrapper = null;
 
       document.addEventListener('click', this.openPopup.bind(this));
@@ -69,9 +68,6 @@ export class NicePopup {
    }
 }
 
-// new NicePopup({
-//    showArrows: true,
-//    mouseAdditionalButtons: true,
-//    keyboard: true
-// });
-
+export function init(cfg) {
+   new NicePopup(cfg);
+}
