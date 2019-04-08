@@ -5,12 +5,7 @@ export class Controls {
       this.popup = cfg.popup;
       this.gallery = cfg.gallery;
       this.moreThanOneImage = cfg.gallery ? cfg.gallery.light_gallery.length > 1 : false;
-
-      this.options = {};
-      this.options.showArrows = cfg.options.showArrows === undefined ? true : cfg.options.showArrows;
-      this.options.arrowsPosition = cfg.options.arrowsPosition === undefined ? 'top' : cfg.options.arrowsPosition;
-      this.options.keyboard = cfg.options.keyboard === undefined ? true : cfg.options.keyboard;
-      this.options.mouseAdditionalButtons = cfg.options.mouseAdditionalButtons === undefined ? true : cfg.options.mouseAdditionalButtons;
+      this.options = cfg.options;
 
       if (this.options.mouseAdditionalButtons) {
          this.addMouseListener();

@@ -5,7 +5,7 @@ Customizable script for displaying images or inline content.
 **N.B. This is a beta version!**
 ## Install
 1. Install package by command ```npm install nice-popup``` or ```yarn add nice-popup```
-2. Add styles to your project from [here](https://github.com/FallenMaster/nice-popup/blob/master/dist/app.css).
+2. Import styles to your .css ```@import '~nice-popup/dist/app.css';```.
 
 ## Usage
 ```javascript

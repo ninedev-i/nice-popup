@@ -1,6 +1,6 @@
 {
   "name": "nice-popup",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Customizable script for displaying images or inline content",
   "author": "Victor Vedenin",
   "license": "MIT",
@@ -10,20 +10,28 @@
     "gallery"
   ],
   "main": "./dist/app.js",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development webpack --mode development",
+    "build": "cross-env NODE_ENV=production webpack --mode production",
+    "watch": "cross-env NODE_ENV=development webpack-dev-server --mode development --progress --watch --hot --inline --open"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/FallenMaster/nice-popup.git"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.0",
-    "@babel/preset-env": "^7.4.2",
-    "babel-preset-minify": "^0.5.0",
-    "babelify": "^10.0.0",
-    "browser-sync": "^2.26.3",
-    "browserify": "^16.2.3",
-    "gulp": "^4.0.0",
-    "gulp-less": "^4.0.1",
+    "@babel/core": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "babel-loader": "^8.0.5",
+    "cross-env": "^5.2.0",
+    "css-loader": "^2.1.1",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "html-loader": "^0.5.5",
     "less": "^3.9.0",
-    "vinyl-source-stream": "^2.0.0"
+    "less-loader": "^4.1.0",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.2.1"
   }
 }

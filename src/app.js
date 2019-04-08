@@ -1,16 +1,21 @@
 'use strict';
 import {Gallery} from './gallery';
 import {Inline} from './inline';
+import './app.css';
 
 export class NicePopup {
-   constructor(cfg) {
+   constructor({showArrows = true, arrowsPosition = 'top', overlayColor = '#0f0f11', mouseAdditionalButtons = true, keyboard = true} = {}) {
       // для ssr если нет window, то не обрабатываем
       if (!window) {
          return;
       }
-      this.overlayColor = cfg.overlayColor === undefined ? '#0f0f11' : cfg.overlayColor;
-
-      this.cfg = cfg || {};
+      this.cfg = {
+         showArrows: showArrows,
+         arrowsPosition: arrowsPosition,
+         keyboard: keyboard,
+         mouseAdditionalButtons: mouseAdditionalButtons,
+         overlayColor: overlayColor
+      };
       this.wrapper = null;
 
       document.addEventListener('click', this.openPopup.bind(this));
@@ -20,6 +25,12 @@ export class NicePopup {
     * Открытие элемента
     */
    openPopup(ev) {
+      ev.preventDefault();
+      // Проверим нет ли уже бэкграундов (нужно для SPA)
+      if (document.querySelector('.nice-wrapper')) {
+         return;
+      }
+
       let target = ev.target;
       let link = target && target.hasAttribute('data-nice') && target.getAttribute('data-nice');
       if (!link) {
@@ -44,7 +55,6 @@ export class NicePopup {
          default:
             return;
       }
-      ev.preventDefault();
    }
 
    /**
@@ -53,7 +63,8 @@ export class NicePopup {
    addWrapper() {
       this.wrapper = document.createElement('div');
       this.wrapper.className = 'nice-wrapper';
-      this.wrapper.innerHTML = `<div class="nice-wrapper-background" style="background-color: ${this.overlayColor};"></div>`;
+      this.wrapper.innerHTML = `<div class="nice-wrapper-background" style="background-color: ${this.cfg.overlayColor};"></div>`;
+      document.body.style.overflow = 'hidden';
 
       document.body.appendChild(this.wrapper);
    }
@@ -63,9 +74,13 @@ export class NicePopup {
     */
    close() {
       document.body.removeChild(this.wrapper);
+      document.body.style.overflow = 'auto';
    }
 }
 
 export function init(cfg) {
+   if (!window) {
+      return;
+   }
    new NicePopup(cfg);
 }
