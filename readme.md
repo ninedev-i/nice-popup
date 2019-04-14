@@ -48,3 +48,4 @@ Add **data-nice="inline"** to your link and set href attribute.
 | arrowsPosition          | String  | 'top'   | Set arrows position: top or side |
 | keyboard                | Boolean | true    | Allow to control by keyboard arrow keys and escape |
 | mouseAdditionalButtons  | Boolean | true    | Allow to control by mouse additional buttons |
+| draggable               | Boolean | true    | Allow to control by dragging |

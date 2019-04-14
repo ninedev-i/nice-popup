@@ -3,7 +3,7 @@
       width: 100%;
       height: 100%;
       display: block;
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       overflow: hidden;
@@ -17,10 +17,14 @@
       }
    }
    
-   // для мобильноый версии убрать заменить height на width
+   &-draggable .nice-image {
+      cursor: grab;
+   }
+   
    &-image {
       height: 100%;
       user-select: none;
+      position: relative;
       
       &-container {
          position: absolute;
@@ -211,4 +215,17 @@
       transform: translateX(-100%);
       opacity: 0;
    }
+}
+
+@media (max-width: 600px) {
+  .nice-image {
+     height: auto;
+     width: 100%;
+     
+     &-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+     }
+  }
 }

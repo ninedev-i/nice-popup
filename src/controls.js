@@ -13,6 +13,11 @@ export class Controls {
       if (this.options.keyboard) {
          this.keyBoardListener();
       }
+
+      if (this.options.draggable && this.moreThanOneImage) {
+         document.querySelector('.nice-wrapper').className += ' nice-draggable';
+         this.makeDraggable();
+      }
    }
 
    /**
@@ -91,5 +96,50 @@ export class Controls {
                break;
          }
       });
+   }
+
+   /**
+    * Добавим возможость листать слайды свайпом
+    */
+   makeDraggable() {
+      let dragImage = (ev) => {
+         if (ev.target.className !== 'nice-image') {
+            return;
+         }
+
+         let getCoords = (elem) => {
+            let box = elem.getBoundingClientRect();
+            return {
+               top: box.top + pageYOffset,
+               left: box.left + pageXOffset
+            };
+         };
+
+         let draggedImage = document.querySelector('.nice-image');
+         let imageClickPosition = ev.pageX - getCoords(draggedImage).left;
+         let wrapper = document.querySelector('.nice-image-wrapper');
+
+         document.onmousemove = (ev) => {
+            wrapper.style.textAlign = 'left';
+
+            let newPosition = ev.pageX - imageClickPosition;
+            draggedImage.style.left = newPosition + 'px';
+         };
+
+         document.onmouseup = () => {
+            if (draggedImage.x + draggedImage.width / 2 > wrapper.offsetWidth / 2) {
+               this.gallery.previousImage();
+            } else if (draggedImage.x + draggedImage.width / 2 < wrapper.offsetWidth / 2) {
+               this.gallery.nextImage();
+            }
+            document.onmousemove = document.onmouseup = null;
+         };
+         draggedImage.ondragstart = () => {
+            return false;
+         };
+      };
+
+      document.addEventListener('mousedown', dragImage, false);
+      document.addEventListener('touchstart', dragImage, false);
    }
 }

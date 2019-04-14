@@ -36,21 +36,19 @@ export class Gallery {
     * Вставим в контейнер изображение нужной высоты
     */
    insertImage(container, src, fromRight) {
-      let transformClassName;
+      let transformClassName = '';
       switch (fromRight) {
          case true:
-            transformClassName = 'nice-animation-right-fadeIn';
+            transformClassName = ' nice-animation-right-fadeIn';
             break;
          case false:
-            transformClassName = 'nice-animation-left-fadeIn';
+            transformClassName = ' nice-animation-left-fadeIn';
             break;
-         default:
-            transformClassName = '';
       }
 
       this.imageWrapper = document.createElement('div');
       this.imageWrapper.className = 'nice-image-wrapper';
-      this.imageWrapper.innerHTML = `<img src="${src}" class="nice-image ${transformClassName}">`;
+      this.imageWrapper.innerHTML = `<img src="${src}" class="nice-image${transformClassName}">`;
       container.appendChild(this.imageWrapper);
 
       this.imageWrapper.addEventListener('click', (ev) => {
@@ -91,6 +89,7 @@ export class Gallery {
       oldWrappers.forEach((item) => {
          item.remove();
       });
+      document.querySelector('.nice-image').className = 'nice-image';
    }
 
    /**

@@ -1,10 +1,11 @@
 'use strict';
 import {Gallery} from './gallery';
 import {Inline} from './inline';
-import './app.css';
+// import './app.css';
+import './app.less';
 
 export class NicePopup {
-   constructor({showArrows = true, arrowsPosition = 'top', overlayColor = '#0f0f11', mouseAdditionalButtons = true, keyboard = true} = {}) {
+   constructor({showArrows = true, arrowsPosition = 'top', overlayColor = '#0f0f11', mouseAdditionalButtons = true, keyboard = true, draggable = true} = {}) {
       // для ssr если нет window, то не обрабатываем
       if (!window) {
          return;
@@ -14,7 +15,8 @@ export class NicePopup {
          arrowsPosition: arrowsPosition,
          keyboard: keyboard,
          mouseAdditionalButtons: mouseAdditionalButtons,
-         overlayColor: overlayColor
+         overlayColor: overlayColor,
+         draggable: draggable
       };
       this.wrapper = null;
 

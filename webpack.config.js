@@ -28,7 +28,7 @@ module.exports = {
       port: 3000
    },
 
-   target: 'node',
+   target: NODE_ENV === 'development' ? 'web' : 'node',
 
    plugins: [
       new ExtractTextPlugin({ filename: 'app.css' })
@@ -44,7 +44,10 @@ module.exports = {
          },
          {
             test: /\.less$/,
-            loader: 'less-loader'
+            use: ExtractTextPlugin.extract({
+               fallback: 'style-loader',
+               use: ['css-loader', 'less-loader']
+            })
          },
          {
             test: /\.css$/,
