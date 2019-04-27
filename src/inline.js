@@ -24,10 +24,10 @@ export class Inline {
       let container = document.createElement('div');
       let hiddenContent = document.querySelector(this.link.getAttribute('href')).innerHTML;
       container.className = 'nice-box-container';
-      container.innerHTML = `<div class="nice-box">${hiddenContent}</div>`;
+      container.innerHTML = `<div class="nice-box"><div class="nice-box-closeButton">×</div>${hiddenContent}</div>`;
 
       container.addEventListener('click', (ev) => {
-         if (ev.target.className === 'nice-box-container') {
+         if (ev.target.className === 'nice-box-container' || ev.target.className === 'nice-box-closeButton') {
             this.popup.close();
          }
       });

@@ -7,6 +7,7 @@
       top: 0;
       left: 0;
       overflow: hidden;
+      z-index: 1000;
       
       &-background {
          opacity: 0.8;
@@ -139,6 +140,7 @@
    &-box {
       padding: 12px;
       background-color: white;
+      position: relative;
       
       &-container {
          position: absolute;
@@ -148,6 +150,28 @@
          display: flex;
          align-items: center;
          justify-content: center;
+      }
+      &-closeButton {
+         width: 30px;
+         height: 30px;
+         display: flex;
+         position: absolute;
+         right: -15px;
+         top: -15px;
+         background-color: #fff;
+         color: #c5bfbf;
+         content: '123123x';
+         border-radius: 25px;
+         border: 2px solid #f1f1f1;
+         justify-content: center;
+         flex-direction: column;
+         text-align: center;
+         font-size: 21px;
+         font-weight: 900;
+         &:hover {
+            border: 2px solid #e2e2e2;
+            cursor: pointer;
+         }
       }
    }
    
