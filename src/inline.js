@@ -20,16 +20,21 @@ export class Inline {
    /**
     * Создадим блок-контейнер
     */
-   createContainer(imageUrl) {
+   createContainer() {
       let container = document.createElement('div');
-      let hiddenContent = document.querySelector(this.link.getAttribute('href')).innerHTML;
-      container.className = 'nice-box-container';
-      container.innerHTML = `<div class="nice-box"><div class="nice-box-closeButton">×</div>${hiddenContent}</div>`;
+      let hiddenBlock = document.querySelector(this.link.getAttribute('href'));
+      hiddenBlock.classList += ' nice-box-container';
 
-      container.addEventListener('click', (ev) => {
-         if (ev.target.className === 'nice-box-container' || ev.target.className === 'nice-box-closeButton') {
-            this.popup.close();
-         }
+      let hiddenBox = hiddenBlock.firstElementChild;
+      hiddenBox.className += ' nice-box';
+
+      let closeButton = document.createElement('div');
+      closeButton.className = 'nice-box-closeButton';
+      closeButton.innerText = '×';
+      hiddenBox.appendChild(closeButton, hiddenBox);
+
+      document.querySelector('.nice-box-closeButton').addEventListener('click', () => {
+         this.popup.close();
       });
 
       this.wrapper.appendChild(container);

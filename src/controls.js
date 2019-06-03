@@ -79,10 +79,10 @@ export class Controls {
     */
    addMouseListener() {
       document.querySelector('.nice-wrapper').addEventListener('mouseup', (ev) => {
-         ev.preventDefault(false);
          let key = ev.keyCode ? ev.keyCode : ev.which;
          switch (key) {
             case 4:
+               ev.preventDefault(false);
                if (this.moreThanOneImage) {
                   this.gallery.previousImage();
                } else {
@@ -90,6 +90,7 @@ export class Controls {
                }
                break;
             case 5:
+               ev.preventDefault(false);
                if (this.moreThanOneImage) {
                   this.gallery.nextImage();
                }

@@ -12,7 +12,9 @@ module.exports = {
       library: 'NicePopup',
       libraryTarget: 'umd'
    },
-
+   // optimization: {
+   //    minimize: false
+   // },
    watchOptions: {
       aggregateTimeout: 100
    },
