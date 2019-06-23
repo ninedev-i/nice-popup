@@ -37,6 +37,12 @@ export class Inline {
          this.popup.close();
       });
 
+      document.querySelector('.nice-box-container').addEventListener('click', (ev) => {
+         if (ev.target.className.search('nice-box-container') >= 0) {
+            this.popup.close();
+         }
+      });
+
       this.wrapper.appendChild(container);
    }
 }
