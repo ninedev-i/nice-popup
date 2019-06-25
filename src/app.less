@@ -8,7 +8,7 @@
       left: 0;
       overflow: hidden;
       z-index: 1000;
-      
+
       &-background {
          opacity: 0.8;
          width: 100%;
@@ -17,16 +17,16 @@
          z-index: 1000;
       }
    }
-   
+
    &-draggable .nice-image {
       cursor: grab;
    }
-   
+
    &-image {
       height: 100%;
       user-select: none;
       position: relative;
-      
+
       &-container {
          position: absolute;
          flex-direction: column;
@@ -35,15 +35,15 @@
          height: 100%;
          z-index: 2000;
       }
-      
+
       &-wrapper {
          text-align: center;
          height: 100%;
          //height: calc(100% - 56px);
          //padding: 10px 0;
       }
-   
-   
+
+
       &-arrows {
          color: white;
          z-index: 2000;
@@ -51,7 +51,7 @@
          flex-direction: row;
          justify-content: center;
          width: 100%;
-   
+
          // Отображение стрелок сверху
          &-top {
             justify-content: center;
@@ -84,7 +84,7 @@
                      color: white;
                   }
                }
-      
+
                &-right {
                   height: 100vh;
                   position: absolute;
@@ -99,7 +99,7 @@
                }
             }
          }
-         
+
          &-left,
          &-right {
             user-select: none;
@@ -109,7 +109,7 @@
             justify-content: center;
             align-items: center;
          }
-   
+
          &-left::before {
             height: 7px;
             width: 7px;
@@ -119,7 +119,7 @@
             transform: rotate(-45deg);
             margin: 0 4px;
          }
-   
+
          &-right::after {
             height: 7px;
             width: 7px;
@@ -129,18 +129,18 @@
             transform: rotate(45deg);
             margin: 0 4px;
          }
-         
+
          &-left:hover,
          &-right:hover {
             cursor: pointer;
          }
       }
    }
-   
+
    &-box {
       background-color: white;
       position: relative;
-      
+
       &-container {
          position: fixed;
          top: 0;
@@ -169,6 +169,7 @@
          text-align: center;
          font-size: 21px;
          font-weight: 900;
+         z-index: 1000;
          cursor: pointer;
          &:hover {
             border: 2px solid #e2e2e2;
@@ -176,7 +177,7 @@
          }
       }
    }
-   
+
    &-animation {
       &-right {
          &-fadeIn {
@@ -194,7 +195,7 @@
             animation: 0.4s ease-out 0s 1 fade-Out-ToLeft;
          }
       }
- 
+
    }
 }
 
@@ -247,7 +248,7 @@
   .nice-image {
      height: auto;
      width: 100%;
-     
+
      &-wrapper {
         display: flex;
         flex-direction: column;

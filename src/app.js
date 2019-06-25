@@ -21,45 +21,38 @@ export class NicePopup {
 
       const inlineLinks= document.querySelectorAll('[data-nice="inline"]');
       Array.from(inlineLinks).forEach(element => {
-         element.addEventListener('click', this.openPopup.bind(this, 'inline'));
+         element.onclick = this.openPopup.bind(element, this, 'inline');
       });
       const galleryLinks= document.querySelectorAll('[data-nice="gallery"]');
       Array.from(galleryLinks).forEach(element => {
-         element.addEventListener('click', this.openPopup.bind(this, 'gallery'));
+         element.onclick = this.openPopup.bind(element, this, 'gallery');
       });
    }
 
    /**
     * Открытие элемента
     */
-   openPopup(linkType, ev) {
-      let target = ev.target;
-
-      // Проверим нет ли уже бэкграундов (нужно для SPA) или не является ли ссылка тегом a
-      if (target.tagName === 'A' || target.parentNode.tagName === 'A') {
-         ev.preventDefault();
+   openPopup(self, linkType) {
+      if (this.tagName === 'A') {
+         event.preventDefault()
       }
       if (document.querySelector('.nice-wrapper')) {
          return;
       }
 
-      let link = target && target.hasAttribute('data-nice') && target.getAttribute('data-nice');
-      if (!link) {
-         target = ev.target.parentElement;
-      }
       let config = {
-         popup: this,
-         link: target,
-         options: this.cfg
+         popup: self,
+         link: this,
+         options: self.cfg
       };
 
       switch(linkType) {
          case 'gallery':
-            this.addWrapper();
+            self.addWrapper();
             new Gallery(config);
             break;
          case 'inline':
-            this.addWrapper(target);
+            self.addWrapper(this);
             new Inline(config);
             break;
       }
@@ -72,7 +65,7 @@ export class NicePopup {
       this.wrapper = document.createElement('div');
       this.wrapper.className = 'nice-wrapper';
       this.wrapper.innerHTML = `<div class="nice-wrapper-background" style="background-color: ${this.cfg.overlayColor};"></div>`;
-      document.body.style.overflow = 'hidden';
+      // document.body.style.overflow = 'hidden';
 
       if (clickTarget) {
          clickTarget.parentNode.insertBefore(this.wrapper, clickTarget);
@@ -86,7 +79,7 @@ export class NicePopup {
     */
    close() {
       this.wrapper.remove();
-      document.body.style.overflow = 'auto';
+      // document.body.style.overflow = 'auto';
 
       let boxContainer = document.querySelector('.nice-box-container');
       if (boxContainer) {

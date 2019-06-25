@@ -147,6 +147,7 @@
   text-align: center;
   font-size: 21px;
   font-weight: 900;
+  z-index: 1000;
   cursor: pointer;
 }
 .nice-box-closeButton:hover {

@@ -23,7 +23,7 @@ export class Inline {
    createContainer() {
       let container = document.createElement('div');
       let hiddenBlock = document.querySelector(this.link.getAttribute('href'));
-      hiddenBlock.classList += ' nice-box-container';
+      hiddenBlock.className += ' nice-box-container';
 
       let hiddenBox = hiddenBlock.firstElementChild;
       hiddenBox.className += ' nice-box';
