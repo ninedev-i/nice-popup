@@ -1,6 +1,6 @@
 'use strict';
 
-import {Controls} from "./controls";
+import {Controls} from './controls';
 
 export class Inline {
    constructor(cfg) {

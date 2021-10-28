@@ -6,6 +6,7 @@ export class Controls {
       this.gallery = cfg.gallery;
       this.moreThanOneImage = cfg.gallery ? cfg.gallery.light_gallery.length > 1 : false;
       this.options = cfg.options;
+      this.isMouseMoving = false;
 
       if (this.options.mouseAdditionalButtons) {
          this.addMouseListener();
@@ -100,7 +101,7 @@ export class Controls {
    }
 
    /**
-    * Добавим возможость листать слайды свайпом
+    * Добавим возможность листать слайды свайпом
     */
    makeDraggable() {
       let dragImage = (ev) => {
@@ -128,19 +129,28 @@ export class Controls {
          };
 
          document.onmouseup = () => {
-            if (draggedImage.x + draggedImage.width / 2 > wrapper.offsetWidth / 2) {
-               this.gallery.previousImage();
-            } else if (draggedImage.x + draggedImage.width / 2 < wrapper.offsetWidth / 2) {
-               this.gallery.nextImage();
+            if (this.isMouseMoving) {
+               if (draggedImage.x + draggedImage.width / 2 > wrapper.offsetWidth / 2) {
+                  this.gallery.previousImage();
+               } else if (draggedImage.x + draggedImage.width / 2 < wrapper.offsetWidth / 2) {
+                  this.gallery.nextImage();
+               }
             }
             document.onmousemove = document.onmouseup = null;
+            this.isMouseMoving = false;
          };
          draggedImage.ondragstart = () => {
             return false;
          };
       };
 
-      document.addEventListener('mousedown', dragImage, false);
+      document.addEventListener('mousedown', (ev) => {
+         this.isMouseMoving = false;
+         dragImage(ev);
+      }, false);
       document.addEventListener('touchstart', dragImage, false);
+      document.addEventListener('mousemove', () => {
+         this.isMouseMoving = true;
+      }, false);
    }
 }

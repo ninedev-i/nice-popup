@@ -1,6 +1,6 @@
 {
   "name": "nice-popup",
-  "version": "0.5.4",
+  "version": "0.5.5",
   "description": "Customizable script for displaying images or inline content",
   "author": "Victor Vedenin",
   "license": "MIT",
@@ -11,13 +11,17 @@
   ],
   "main": "./dist/app.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack --mode development",
+    "dev": "vite public/",
     "build": "cross-env NODE_ENV=production webpack --mode production",
-    "watch": "cross-env NODE_ENV=development webpack-dev-server --mode development --progress --watch --hot --inline --open"
+    "watch": "cross-env NODE_ENV=development webpack-dev-server --mode development --progress --watch --hot --inline --open",
+    "publish": "npm publish"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/FallenMaster/nice-popup.git"
+    "url": "git+https://github.com/ninedev-i/nice-popup.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ninedev-i/nice-popup/issues"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
@@ -30,6 +34,7 @@
     "less": "^3.9.0",
     "less-loader": "^4.1.0",
     "style-loader": "^0.23.1",
+    "vite": "^2.6.13",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0",
     "webpack-dev-server": "^3.2.1"

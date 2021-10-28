@@ -1,4 +1,5 @@
 'use strict';
+
 import {Gallery} from './gallery';
 import {Inline} from './inline';
 import './app.less';
@@ -91,11 +92,4 @@ export class NicePopup {
          document.querySelector('.nice-box-closeButton').remove();
       }
    }
-}
-
-export function init(cfg) {
-   if (!window) {
-      return;
-   }
-   new NicePopup(cfg);
 }

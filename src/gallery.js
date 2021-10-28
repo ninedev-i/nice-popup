@@ -1,4 +1,5 @@
 'use strict';
+
 import {Controls} from './controls';
 
 export class Gallery {
